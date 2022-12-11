@@ -112,6 +112,63 @@ class Solution:
 
         return len(ops)
 
+'''someone else solution, 48/55'''
+class SolutionSomeoneElses:
+    def racecar(self, target: int) -> int:
+        q = deque([(0, 0, 1)])
+        visited = set([0, 0, 1])
+        #print('q : ' + str(q))
+        #print('visited : ' + str(visited))
+        
+        #print('entering while loop!\n')
+        while q:
+            actions, x, v = q.popleft()
+            #print('visited : ' + str(visited))
+            #print('q : ' + str(q))
+            #print('actions : ' + str(actions))
+            #print('x : ' + str(x))
+            #print('v : ' + str(v) + '\n')
+
+            if x == target:
+                return actions
+            
+            #print('actions incremented')
+            actions += 1
+            
+            # Accelerate
+            newx = x + v
+            newv = v * 2
+            if (state := (actions, newx, newv)) not in visited:
+                visited.add(state)
+                q.append(state)
+                
+            
+            # Reverse
+            newv = -1 if v > 0 else 1
+            if (state := (actions, x, newv)) not in visited:
+                visited.add(state)
+                q.append(state)
+
+'''real answer'''
+class SolutionPasses:
+    dp = {0: 0}
+    #def racecar(self, target: int) -> int:
+    def racecar(self, t):
+        print('target : ' + str(t))
+        if t in self.dp:
+            return self.dp[t]
+        n = t.bit_length()
+        print('bit length : ' + str(n))
+        if 2**n - 1 == t:
+            print('math : ' + str(2**n - 1))
+            self.dp[t] = n
+            print(str(self.dp))
+        else:
+            self.dp[t] = self.racecar(2**n - 1 - t) + n + 1
+            for m in range(n - 1):
+                self.dp[t] = min(self.dp[t], self.racecar(t - 2**(n - 1) + 2**m) + n + m + 1)
+        return self.dp[t]
+
 if __name__ == "__main__":
     sammys_car = raceCar('aaara')
     #pos = sammys_car.output()

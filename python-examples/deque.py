@@ -15,3 +15,10 @@ print('added horse ' + str(dq))
 dq.appendleft('shark')
 
 print('addedleft shark ' + str(dq))
+
+# dq evaluates to false once it's empty
+while dq:
+    print('dq before pop' + str(dq))
+    dq.pop()
+    print('dq after pop' + str(dq) + '\n')
+print('end of while loop!\n')
