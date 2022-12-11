@@ -12,7 +12,7 @@ print(matrix)
 print('matrix for loop - easy')
 cols = []
 for _ in range(num_cols):
-    cols = cols + ['']
+    cols = cols + [' '] # this is how you concatenate an array
 
 rows = []
 for _ in range(num_rows):

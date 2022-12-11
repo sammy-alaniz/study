@@ -33,14 +33,37 @@ class Solution:
                 curr_string_index += 1
         
         answer = ""
+        print(matrix)
         for row in matrix:
             answer += "".join(row)
             
         return answer.replace(" ", "")
 
+    def convert_two(self, s: str, numRows: int) -> str:
+        if numRows==1 or len(s)<=numRows:
+            return s
+        zigzag = ['' for i in range(numRows)]
+        row=0
+        switch=True
+        for i in s:
+            zigzag[row]+=i
+            if switch:            
+               row+=1
+            else:
+                row-=1
+            if row==numRows-1:
+                switch=False
+            if row==0:
+                switch=True
+            print(zigzag)
+        return ''.join(zigzag)
 
-if __name__ == "__main__":
+
+if __name__ == "__main__": # this is how you set up a main function in python
     row = 3
     sol = Solution()
     output = sol.convert('Sammy', row)
     print(output)
+
+    output_two = sol.convert_two('Sammy', row)
+    print(output_two)
