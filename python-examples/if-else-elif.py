@@ -22,5 +22,6 @@ if __name__ == "__main__":
     stack = ['s']
     #top_element = stack.pop() if stack else '#'
     top_element = stack.pop() if None else '#'
-
+    
+    # if None: evaluates to true
     print(top_element)
