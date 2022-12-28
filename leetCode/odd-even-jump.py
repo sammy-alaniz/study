@@ -57,24 +57,96 @@ Constraints:
 
 # VERSION 1 - mistake, odd or even can't be started from first iteration, it depends on iteration. 1 odd, 2 even, 3 odd, 4 even DDUUH
 
+#class Solution:
+#
+#    def smallest(self, index: int, arr: list) -> bool:
+#        length = len(arr)
+#        location = index
+#        #for i in range(length - location + 1):
+#        for i in range(location + 1, length):
+#            if arr[location] > arr[i]:
+#                return False
+#        return True
+#
+#    def biggest(self, index: int, arr: list) -> bool:
+#        length = len(arr)
+#        location = index
+#
+#        #for i in range(length - location + 1):
+#        for i in range(location + 1, length):
+#            if arr[location] < arr[i]:
+#                return False
+#
+#        return True
+#
+#    def evenFind(self, index: int, arr: list) -> bool:
+#        location = index
+#        length = len(arr)
+#
+#        if location == length - 1:
+#            return True
+#
+#        #for ia in range(length - location + 1):
+#        for ia in range(location + 1, length):
+#            # odd step
+#            if arr[index] >= arr[ia] and self.biggest(ia,arr):
+#                return self.oddFind(ia, arr)
+#
+#        return False
+#    
+#    def oddFind(self, index: int, arr: list) -> bool:
+#        location = index
+#        length = len(arr)
+#
+#        if index == length - 1:
+#            return True
+#
+#        #for ia in range(length - location + 1):
+#        for ia in range(location + 1, length):
+#            # even step
+#            if arr[location] <= arr[ia] and self.smallest(ia, arr):
+#                return self.evenFind(ia,arr)
+#
+#        return False
+#            
+#    def reachesEnd(self, index: int, arr: list) -> int:
+#        count = 0
+#        
+#        if self.oddFind(index, arr) or self.evenFind(index, arr):
+#            count = 1
+#        
+#        return count
+#
+#    def oddEvenJumps(self, arr: List[int]) -> int:
+#        length = len(arr)
+#        
+#        count = 0
+#        # 0, 1, 2, 3, 4, ... , N-1
+#        for index in range(length):
+#            count += self.reachesEnd(index, arr)
+#
+#        return count
+
+# VERSION 2 Works! Doesn't work on large sets tho
+
 class Solution:
 
-    def smallest(self, index: int, arr: list) -> bool:
+    def smallestPossible(self, index: int, arr: list, relativeValue: int) -> bool:
         length = len(arr)
         location = index
         #for i in range(length - location + 1):
         for i in range(location + 1, length):
-            if arr[location] > arr[i]:
+            if arr[location] > arr[i] and arr[relativeValue] <= arr[i]:
                 return False
         return True
 
-    def biggest(self, index: int, arr: list) -> bool:
+    def biggestPossible(self, index: int, arr: list, relativeValue: int) -> bool:
         length = len(arr)
         location = index
 
         #for i in range(length - location + 1):
         for i in range(location + 1, length):
-            if arr[location] < arr[i]:
+            if arr[location] < arr[i] and arr[relativeValue] >= arr[i]:
                 return False
 
         return True
@@ -89,7 +161,7 @@ class Solution:
         #for ia in range(length - location + 1):
         for ia in range(location + 1, length):
             # odd step
-            if arr[index] >= arr[ia] and self.biggest(ia,arr):
+            if arr[index] >= arr[ia] and self.biggestPossible(ia,arr,location):
                 return self.oddFind(ia, arr)
 
         return False
@@ -104,28 +176,21 @@ class Solution:
         #for ia in range(length - location + 1):
         for ia in range(location + 1, length):
             # even step
-            if arr[location] <= arr[ia] and self.smallest(ia, arr):
+            if arr[location] <= arr[ia] and self.smallestPossible(ia, arr, location):
                 return self.evenFind(ia,arr)
 
         return False
-            
-    def reachesEnd(self, index: int, arr: list) -> int:
-        count = 0
-        
-        if self.oddFind(index, arr) or self.evenFind(index, arr):
-            count = 1
-        
-        return count
 
     def oddEvenJumps(self, arr: List[int]) -> int:
         length = len(arr)
-        
         count = 0
         # 0, 1, 2, 3, 4, ... , N-1
         for index in range(length):
-            count += self.reachesEnd(index, arr)
+            if self.oddFind(index, arr):
+                count += 1
 
         return count
+    
 
 
 
