@@ -40,3 +40,13 @@ for i in range(10):
         pass
     print(i)
 print('end of pass example\n')
+
+
+
+
+print('looped assignment')
+n = 5
+dp = [False, False] for _ in range(n)
+print(dp)
+dp[n - 1] = [True, True]
+print(dp)
