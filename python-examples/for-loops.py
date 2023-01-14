@@ -46,7 +46,24 @@ print('end of pass example\n')
 
 print('looped assignment')
 n = 5
-dp = [False, False] for _ in range(n)
+dp = [[False, False] for _ in range(n)]
 print(dp)
 dp[n - 1] = [True, True]
 print(dp)
+
+# range(start, stop, step)
+print('\nsimple for loop NEGATIVE - range(5, -1, -1)')
+for i in range(5, -1, -1):
+    print(i)
+
+print('\nsimple for loop NEGATIVE - range(5, -2, -1)')
+for i in range(5, -2, -1):
+    print(i)
+
+print('\n\nTrying reverse range num list')
+for i in range(1,0,-1):
+    print(i)
+
+print('\n\nTrying reverse range num list : for i in range(5,-1,-1)')
+for i in range(5,-1,-1):
+    print(i)

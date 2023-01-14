@@ -29,6 +29,24 @@ class Solution:
                     area = (min_height * width)
 
         return area
+
+    def again_maxArea(self, height: List[int]) -> int:
+        answer = 0
+
+        for ia in range(len(height)):
+            for ib in range(ia+1, len(height)):
+                max_height = min(height[ia], height[ib])
+                width = ib - ia
+                area = width * max_height
+
+                if area > answer:
+                    answer = area
+
+        return answer
+
+
+
+
 if __name__ == "__main__":
     sol = Solution()
     area = sol.maxArea([1,8,6,2,5,4,8,3,7])
