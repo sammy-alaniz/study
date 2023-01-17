@@ -148,6 +148,15 @@ class CHATGPT_APPTHREE_Solution:
                     memo[i] = Index.GOOD
                     break
         return memo[0] == Index.GOOD
+# 1 - create array of unknown enums
+# 2 - make last element of array good
+# 3 - Top Loop : start from the second to last item in the array
+# 4 - Top Loop : move to the left, from the second to last item in the array
+# 5 - Inner Loop : take the smaller value between A) posistion plus positions element value or B) length of the array (minus one because it's not inclusive)
+# 6 - Inner Loop : start at current posistion plus one and end at the smaller value
+# 7 - 
+
+
 
 if __name__ == "__main__":
     print('\nJump Game')
