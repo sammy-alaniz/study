@@ -41,7 +41,7 @@ for i in range(10):
     print(i)
 print('end of pass example\n')
 
-
+# range(start, stop, step=1)
 
 
 print('looped assignment')
